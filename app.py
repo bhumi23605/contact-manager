@@ -76,3 +76,13 @@ elif choice == "Delete":
             st.success(f"Contact {name} deleted successfully!")
         else:
             st.error("Contact not found.")
+
+data = view_contact()
+if data:
+    df = pd.DataFrame(data)
+    st.download_button(
+        label="Download Contacts as CSV",
+        data=df.to_csv(index=False).encode("utf-8"),
+        file_name="contacts.csv",
+        mime="text/csv",
+    )
