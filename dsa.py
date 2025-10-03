@@ -58,7 +58,7 @@ def delete_contact(name):
     with open(csv_file, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if row['Name'].lower() != name.lower():
+            if row['Name'].strip().lower() != name.strip().lower():
                 rows.append(row)
             else:
                 deleted = True
@@ -75,3 +75,4 @@ def delete_contact(name):
          
 
                 
+
