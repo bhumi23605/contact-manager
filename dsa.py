@@ -22,14 +22,16 @@ def view_contact():
             contacts.append(row)
     return contacts
 
-def search_contact(name):
+def search_contact(query):
     results = []
     with open(csv_file, "r", encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if row["Name"].lower() == name.lower():
+            # Check if query appears in ANY field (case-insensitive)
+            if any(query.lower() in str(value).lower() for value in row.values()):
                 results.append(row)
     return results
+
 
 def update_contact(name, new_data):
     rows = []
@@ -71,4 +73,5 @@ def delete_contact(name):
                 
         
          
+
                 
